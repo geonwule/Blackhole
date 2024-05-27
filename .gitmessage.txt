@@ -1,0 +1,19 @@
+<type>[optional scope]: <description> 
+
+# Write in one line within 50 characters, do not use periods ------------------ | 
+
+### [optional body] 
+
+# Write within 72 characters, explain "what" and "why" rather than "how", use '-' to separate lines if multiple lines --------------- | 
+
+### [optional footer(s)] # Add issue numbers or reference links related to code work
+
+Title Types
+✨ :sparkles: feat: Add a new feature
+🐛 :bug: fix: Bug fix
+🔨 :hammer: refactor: Code refactoring
+📝 :memo: docs: Add, modify, or delete documentation
+🎨 :art: design: Add, modify, or delete UI
+🔥 :fire: remove: Delete code/files
+💡 :bulb: comment: Add, modify, or delete comments
+💚 :green_heart: chore: Other changes
