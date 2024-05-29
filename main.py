@@ -1,6 +1,7 @@
 from set_oauth import get_access_token, get_days_until_blackhole, get_user_info
 import os
 from dotenv import load_dotenv
+from ascii_art import add_border
 
 load_dotenv()
 
@@ -9,9 +10,11 @@ if target_uri == None:
     print('Failed to get TARET_URI from .env file')
     exit(0)
 
-print('Go to the following link and get the code:\n', target_uri)
+print(add_border(' Go to the following link and get the code '))
+print(target_uri + '\n')
+
 while True:
-    code = input('Enter the code: ')
+    code = input('>> Enter the code here (or type "exit" to quit): ')
     if code == 'exit':
         exit(0)
     access_token, expires_in = get_access_token(code)
@@ -20,10 +23,10 @@ while True:
         continue
     break
 
-print('access_token = ', access_token, 'expires_in = ', expires_in)
+print(add_border('access_token = ' + access_token))
 
 while True:
-    intra_id = input("Enter your intra ID: ")
+    intra_id = input('>> Enter intra ID here (or type "exit" to quit): ')
     if intra_id == 'exit':
         exit(0)
 
@@ -36,10 +39,10 @@ while True:
                 is_blackholed = True
                 break
         if is_blackholed:
-            print(f"{intra_id}'s blackhole in {days_until_blackhole} days")
+            print(add_border(f"{intra_id}'s blackhole in {days_until_blackhole} days"))
         else:
-            print(f"{intra_id} is not blackholed, maybe {intra_id} is member")
+            print(add_border(f"{intra_id} is not blackholed, maybe {intra_id} is member"))
 
     except:
-        print(intra_id, "is not found")
+        print(add_border(intra_id, "is not found"))
         continue
