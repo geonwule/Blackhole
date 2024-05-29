@@ -37,4 +37,4 @@ def get_user_info(access_token, intra_id):
     if response.status_code == 200:
         return response.json()
     else:
-        return None
+        raise Exception('Failed to get user info')

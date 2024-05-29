@@ -31,18 +31,20 @@ while True:
         exit(0)
 
     try:
-        user_info = get_user_info(access_token, intra_id)
-        is_blackholed = False
-        for cursus_user in user_info['cursus_users']:
-            if cursus_user['blackholed_at']:
-                days_until_blackhole = get_days_until_blackhole(cursus_user['blackholed_at'])
-                is_blackholed = True
-                break
-        if is_blackholed:
-            print(add_border(f"{intra_id}'s blackhole in {days_until_blackhole} days"))
+        data = get_user_info(access_token, intra_id)
+
+        # 42cursus에서 Learner인지 Member인지 구분
+        for cursus_user in data['cursus_users']:
+            if cursus_user['cursus_id'] == 21:  # 42cursus의 id는 21
+                user_info = cursus_user
+
+        grade = user_info['grade']
+        if grade == 'Member':
+            print(add_border(f" {intra_id} is Member "))
         else:
-            print(add_border(f"{intra_id} is not blackholed, maybe {intra_id} is member"))
+            days_until_blackhole = get_days_until_blackhole(user_info['blackholed_at'])
+            print(add_border(f" {intra_id}'s blackhole in {days_until_blackhole} days" ))
 
     except:
-        print(add_border(intra_id, "is not found"))
+        print(add_border(' ' + intra_id + " is not found " ))
         continue
