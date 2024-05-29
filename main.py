@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-target_uri = os.getenv("TARET_URI")
+target_uri = os.getenv("TARGET_URI")
 if target_uri == None:
     print('Failed to get TARET_URI from .env file')
     exit(0)
