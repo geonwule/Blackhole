@@ -4,9 +4,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print('Go to the following link and get the code:\n', os.getenv("TARGET_URI"))
+target_uri = os.getenv("TARET_URI")
+if target_uri == None:
+    print('Failed to get TARET_URI from .env file')
+    exit(0)
+
+print('Go to the following link and get the code:\n', target_uri)
 while True:
     code = input('Enter the code: ')
+    if code == 'exit':
+        exit(0)
     access_token, expires_in = get_access_token(code)
     if (access_token == None):
         print('Failed to get access token')
@@ -18,7 +25,7 @@ print('access_token = ', access_token, 'expires_in = ', expires_in)
 while True:
     intra_id = input("Enter your intra ID: ")
     if intra_id == 'exit':
-        break
+        exit(0)
 
     try:
         user_info = get_user_info(access_token, intra_id)
